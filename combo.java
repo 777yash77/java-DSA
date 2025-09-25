@@ -2,7 +2,8 @@ import java.util.*;
 
 public class combo {
    public  static ArrayList<Integer>resoo=new ArrayList<>();
-    public static void genCombo(int arr[][],int row,int col,int r,int[]res){
+   public static HashMap<Integer,int[]>refer=new HashMap<>();
+;    public static void genCombo(int arr[][],int row,int col,int r,int[]res){
         if(r==row){
             int sum=0;
             for(int i=0;i<row;i++){
@@ -10,6 +11,11 @@ public class combo {
                 sum+=res[i];
             }
             resoo.add(sum);
+            int temp[]=new int[row];
+            for(int i=0;i<row;i++){
+                temp[i]=res[i];
+            }
+            refer.put(sum,temp);
             System.out.println();
             return;
         }
@@ -44,8 +50,11 @@ public class combo {
       genCombo(arr,row,col,r,resk); 
       Collections.sort(resoo);  
       System.out.println(resoo);
+      System.out.println("In Ordered way");
+      displayOrder();
       int tar=sc.nextInt();
       System.out.println(resoo.get(tar-1));
+      
 }
     public static int power(int base,int limit){
         int res=1;
@@ -53,6 +62,16 @@ public class combo {
           res=res*base;
         }
         return res;
+    }
+    public static void displayOrder(){
+        for(int i=0;i<resoo.size();i++){
+            System.out.println(Arrays.toString(refer.get((resoo.get(i)))));
+        }
+    }
+    public static void Normalise(int row[]){
+         for(int i=0;i<row.length;i++){
+            System.out.print(row[i]+" ");
+         }
     }
 }
 
